@@ -10,6 +10,8 @@ import {
   Scissors,
   CheckCircle2,
   ArrowRight,
+  Shield,
+  FileText,
 } from 'lucide-react'
 
 export async function generateMetadata({
@@ -19,124 +21,131 @@ export async function generateMetadata({
 }) {
   const resolved = await params
   return {
-    title: `Programs & Initiatives | ${resolved.tenant === 'prayaan' ? 'Prayaan Foundation' : resolved.tenant}`,
+    title: 'Programs Prospectus (7 Initiatives) | Prayaan Foundation, Kishanganj, Bihar',
     description:
-      'Explore Vidya Prabha, Dropout Clinic, School Chale Hum, Model School, Centre for Competition, and Government School Support programs.',
+      'Detailed institutional syllabi for Vidya Prabha, Dropout Clinic, School Chale Hum, Model School, Centre for Competition, and Government School Support programs.',
   }
 }
 
 const detailedPrograms = [
   {
-    id: 'vidya-prabha',
-    title: 'Vidya Prabha',
-    tagline: 'Universal Educational Support & Scholarships',
-    category: 'Core Education Support',
-    icon: BookOpen,
-    description:
-      'Vidya Prabha is Prayaan’s foundational initiative providing holistic educational support to children from families where parents are illiterate or earn daily wages. Under this project, Prayaan operates decentralized evening tutoring centers across rural clusters, distributes textbooks, stationary, and uniforms, and provides merit scholarships for students entering secondary school.',
-    bullets: [
-      'Decentralized evening learning circles in village centers',
-      'Free distribution of curriculum books, notebooks, and geometry sets',
-      'Continuous teacher-parent interaction to monitor academic progress',
-      'Merit-cum-means scholarship grants for high school transitions',
-    ],
-    metric: '4,200+ Students actively tutored',
-  },
-  {
     id: 'dropout-clinic',
+    code: 'PRY-REC-01',
     title: 'Dropout Clinic',
-    tagline: 'Bridge Schooling & Dropout Reintegration',
-    category: 'Flagship Intervention',
+    subtitle: 'Diagnostic Bridge Schooling & Formal Public Reinstatement',
+    tag: 'Flagship Reintegration',
     icon: Compass,
     description:
-      'The Dropout Clinic is a specialized diagnostic and pedagogical center designed to tackle North India’s acute school dropout challenge. Field teams identify children who were pulled out of school due to agricultural labor, familial crisis, or learning distress. Through accelerated bridge curricula, remedial literacy modules, and empathetic counseling, children are brought back up to grade level and formally re-enrolled into state middle and high schools.',
+      'The Dropout Clinic is Prayaan’s core clinical intervention targeting out-of-school children across Kishanganj and rural North India. Children who have abandoned school due to seasonal agricultural harvest, family economic distress, or severe learning deficits undergo 6 to 9 months of diagnostic bridge instruction to master basic language comprehension and foundational arithmetic before formal grade-level re-enrollment in state schools.',
     bullets: [
-      'House-to-house identification of out-of-school children',
-      'Accelerated bridge coursework in language and foundational math',
-      'Parental counseling to eliminate child labor tendencies',
-      'Direct coordination with local Headmasters for seamless formal readmission',
+      'House-to-house census identifying out-of-school adolescents aged 7 to 15',
+      'Diagnostic academic evaluation to assess learning loss without stigma',
+      'Accelerated bridge coursework in Hindi literacy, reading fluency, and foundational numeracy',
+      'Direct facilitation of readmission documentation with local Block Education Officers',
     ],
-    metric: '1,850+ Dropouts reinstated into mainstream schools',
+    metric: '1,850+ Out-of-school dropouts successfully reinstated into formal classrooms',
+  },
+  {
+    id: 'vidya-prabha',
+    code: 'PRY-EDU-02',
+    title: 'Vidya Prabha',
+    subtitle: 'Decentralized Village Evening Tutoring Circles & Learning Supplies',
+    tag: 'Core Elementary Support',
+    icon: BookOpen,
+    description:
+      'Vidya Prabha provides daily free evening remedial tutoring to first-generation schoolgoers enrolled in rural government primary and middle schools. Because most rural parents are illiterate and unable to support homework, these village circles prevent minor learning gaps from ballooning into permanent school abandonment.',
+    bullets: [
+      'Decentralized evening learning circles conducted in village community halls and courtyards',
+      'Free distribution of NCERT/SCERT textbooks, stationery, school satchels, and uniforms',
+      'Continuous monitoring of classroom attendance and quarterly parent-teacher consultations',
+      'Merit-cum-means scholarship assistance for students transitioning to secondary grades',
+    ],
+    metric: '4,200+ Elementary and middle-school students actively tutored daily',
   },
   {
     id: 'school-chale-hum',
+    code: 'PRY-MOB-03',
     title: 'School Chale Hum',
-    tagline: 'Grassroots Community Enrollment Drives',
-    category: 'Grassroots Mobilization',
+    subtitle: 'Panchayat Enrollment Drives, Street Assemblies & Parental Counseling',
+    tag: 'Community Mobilization',
     icon: Users,
     description:
-      'A high-visibility mass awareness and community mobilization drive conducted before each academic session. Prayaan volunteers, alumni, and local youth march through rural settlements with banners, street plays, and door-to-door petitions, ensuring that not a single 6-year-old child in the panchayat remains unenrolled.',
+      'A seasonal community mobilization campaign held prior to the commencement of each academic year. Field volunteers organize village rallies, street theater, and door-to-door meetings with panchayat elders to persuade marginalized parents that universal schooling is a non-negotiable constitutional right.',
     bullets: [
-      'Panchayat-level door-to-door school enrollment censuses',
-      'Community rallies and street theater raising awareness on girls’ education',
-      'Immediate on-the-spot enrollment support with birth certificates and documentation',
-      'Follow-up audits to verify attendance during the first 90 days',
+      'Panchayat-level street petitions and public counseling assemblies with village mukhiyas',
+      'On-the-spot documentation camps helping parents secure birth certificates and Aadhaar cards',
+      'Identification and documentation of child laborers in local brick kilns and tea stalls',
+      'Zero-tolerance community covenants against early childhood school withdrawal',
     ],
-    metric: '15,000+ Rural families engaged and rallied',
+    metric: '15,000+ Rural families counseled; near-zero non-enrollment achieved in target clusters',
   },
   {
     id: 'centre-for-competition',
+    code: 'PRY-CMP-04',
     title: 'Centre for Competition',
-    tagline: 'Coaching Talented Youth for Civil & Public Careers',
-    category: 'Higher Education & Careers',
+    subtitle: 'Public Service & Competitive Exam Coaching for Rural Aspirants',
+    tag: 'Higher Education & Careers',
     icon: Trophy,
     description:
-      'Talent in rural India is abundant, but access to expensive coaching institutes is non-existent. The Centre for Competition provides free structured mentorship, reference libraries, online test series, and guest lectures from civil servants and scholars. Rural students are trained for competitive examinations, college admissions, and government service careers.',
+      'Talented youth in rural districts often fail competitive public examinations solely due to lack of expensive commercial coaching and reference material. Prayaan’s Centre for Competition levels the playing field by providing structured exam preparation, curated reference libraries, and mentorship for state subordinate and civil service recruitments.',
     bullets: [
-      'Dedicated digital study rooms and physical reference libraries in Kishanganj',
-      'Daily mock tests, current affairs briefings, and analytical training',
-      'Mentorship sessions led by working professionals and retired officers',
-      'Financial sponsorships covering exam registration and travel fees',
+      'Dedicated, electricity-backed study reading rooms and reference libraries in Kishanganj Town',
+      'Regular test series, mock interview panels, and general awareness seminars',
+      'Specialized mentorship delivered by serving civil servants, college professors, and alumni',
+      'Travel and exam fee stipends for candidates from landless agricultural families',
     ],
-    metric: '350+ Youth coached for competitive exams',
+    metric: '350+ Rural aspirants coached; 14 candidates cleared state subordinate selection boards',
   },
   {
     id: 'model-school',
+    code: 'PRY-SCH-05',
     title: 'Model School Project',
-    tagline: 'Modern Benchmark K-12 Institution',
-    category: 'Institutional Excellence',
+    subtitle: 'Exemplary Benchmark Institution (Grades 1 to 12)',
+    tag: 'Institutional Proof-of-Concept',
     icon: School,
     description:
-      'The Prayaan Model School represents an exemplary benchmark institution equipped with all modern pedagogical facilities required in this day and age. Catering to grades 1 through 12, it provides experiential STEM learning, computer literacy, sports training, and moral character education — proving that world-class education can flourish in rural heartlands.',
+      'Serving as an exemplary pedagogical benchmark demonstrating that world-class, holistic, and joyful schooling can be delivered in rural North India. Equipped with smart digital classrooms, physical science laboratories, a curated library, and continuous teacher professional development programs.',
     bullets: [
-      'Comprehensive curriculum spanning primary, middle, and senior secondary grades',
-      'Smart audio-visual classrooms and computer laboratories',
-      'Holistic physical education, debate, and arts extracurriculars',
-      'Highly trained, passionate faculty with continuous teacher development',
+      'Full state and central curriculum standards enriched with experiential STEM modules',
+      'Dedicated smart digital classrooms with audiovisual learning tools',
+      'Rigorous continuous professional development and pedagogy workshops for rural educators',
+      'Holistic extracurricular emphasis on sports, debates, local folklore, and environmental stewardship',
     ],
-    metric: 'Full K-12 benchmark education model',
+    metric: 'Comprehensive K-12 standard benchmark school serving as a demonstration campus',
   },
   {
     id: 'institutional-excellence',
-    title: 'Government School Support & Advocacy',
-    tagline: 'Strengthening Public School Infrastructure',
-    category: 'Public Infrastructure',
+    code: 'PRY-PUB-06',
+    title: 'Government School Support & Structural Advocacy',
+    subtitle: 'Infrastructure Audits, Sanitation Repairs & Volunteer Teaching Aid',
+    tag: 'Public System Strengthening',
     icon: Building,
     description:
-      'Government schools form the backbone of Indian education, yet many suffer from dilapidated classrooms, dysfunctional toilets, and missing staff. Prayaan conducts rigorous infrastructure audits of government schools, submits actionable recommendations to district and state authorities, and mobilizes corporate CSR sponsors to build clean drinking water units, separate girls’ toilets, and library shelves.',
+      'Public schools are the bedrock of educational equity in India. Rather than creating privatized alternatives, Prayaan actively audits dilapidated government school buildings, submits documentation to district authorities, and mobilizes corporate CSR sponsors to build clean drinking water stations, boundary walls, and separate girls’ toilets.',
     bullets: [
-      'Thorough utility and structural audits of state middle schools',
-      'Corporate CSR matchmaking to fund essential school upgrades',
-      'Deployment of temporary HR and teaching support to under-staffed schools',
-      'Constructive policy advocacy submitted directly to district magistrates and education officers',
+      'Comprehensive structural surveys of rural government primary and middle school buildings',
+      'Facilitating corporate CSR partnerships to construct segregated sanitation facilities and borewells',
+      'Mobilizing volunteer teaching fellows to bridge temporary staff vacancies in rural schools',
+      'Equipping state school classrooms with blackboard resurfacing, desks, and library cupboards',
     ],
-    metric: '35+ Government schools adopted and upgraded',
+    metric: '35+ Government primary and middle schools audited and equipped with basic sanitation',
   },
   {
     id: 'community-centre',
-    title: 'Community Centre & Livelihood',
-    tagline: 'Economic Self-Sufficiency & Vocational Training',
-    category: 'Vocational & Livelihood',
+    code: 'PRY-VOC-07',
+    title: 'Community Centre & Vocational Livelihood Program',
+    subtitle: 'Certified Artisan & Garment Tailoring for Rural Mothers',
+    tag: 'Economic Self-Reliance',
     icon: Scissors,
     description:
-      'True educational empowerment is sustained when families have economic stability. The Prayaan Community Centre is a self-sufficiency initiative providing formal vocational training for unemployed women, youth, and persons with disabilities. Trainees master tailoring, textile stitching, pickle and preserve making, and micro-enterprise management, with direct linkages to lucrative local and urban markets.',
+      'Eradicating child labor requires addressing family economic vulnerability. When mothers achieve stable supplementary incomes, children stay in school. The Prayaan Community Centre provides certified 6-month vocational courses in garment tailoring, artisanal embroidery, and micro-enterprise management.',
     bullets: [
-      'Formal 6-month certification courses in garment tailoring and apparel design',
-      'Food processing and handicraft training with quality standard checks',
-      'Financial literacy, micro-credit linkages, and cooperative formation',
-      'Market linkage assistance ensuring fair prices and sustained orders',
+      'Hands-on training using commercial industrial sewing machines and pattern drafting tables',
+      'Curriculum integrating technical stitching with UPI digital banking and self-help bookkeeping',
+      'Direct market-linkage contracts with regional garment distributors and handloom cooperatives',
+      'Dedicated batches for adolescent girls, rural mothers, and differently-abled individuals',
     ],
-    metric: '800+ Women & disabled artisans economically empowered',
+    metric: '800+ Rural women and differently-abled artisans certified with sustained monthly incomes',
   },
 ]
 
@@ -149,92 +158,136 @@ export default async function TenantProgramsPage({
   const basePath = `/sites/${resolved.tenant}`
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Header */}
-      <section className="bg-gradient-to-b from-slate-900 to-blue-950 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-            PRAYAAN INITIATIVES
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight mt-4 text-white">
-            7 Flagship Programs Transforming Education
+    <div className="bg-[#FBF9F5] text-[#292524] min-h-screen font-sans">
+      {/* 1. Dignified Institutional Header */}
+      <section className="bg-[#112A1F] text-[#FBF9F5] py-20 border-b border-[#2D5A43] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#2D5A43_1px,transparent_1px)] [background-size:20px_20px] opacity-15 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded bg-[#1B4332] border border-[#2D5A43] text-stone-300 text-xs font-serif italic">
+            <span>Institutional Portfolio & Syllabi</span>
+            <span className="text-white/40">•</span>
+            <span className="text-amber-200/90 font-sans not-italic font-medium">7 Field Initiatives</span>
+          </div>
+
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#FBF9F5] leading-tight">
+            Seven Pillars of Field Intervention
           </h1>
-          <p className="text-slate-300 text-lg mt-4 leading-relaxed font-normal">
-            A comprehensive, multi-layered approach to rural child literacy, school dropout prevention,
-            and sustainable community empowerment.
+
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed font-sans max-w-2xl mx-auto">
+            An integrated continuum of interventions designed to eradicate rural school dropouts, fortify public schools, and provide underprivileged youth with competitive futures.
           </p>
         </div>
       </section>
 
-      {/* Program Detailed Cards */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {/* 2. Program Syllabi Cards */}
+      <section className="py-20 bg-[#FBF9F5]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           {detailedPrograms.map((p) => {
             const Icon = p.icon
             return (
               <div
                 key={p.id}
                 id={p.id}
-                className="scroll-mt-28 rounded-2xl bg-white border border-slate-200 p-8 sm:p-10 shadow-sm hover:shadow-md transition space-y-6"
+                className="scroll-mt-28 bg-[#FBF9F5] border border-[#D8CFC4] rounded-lg p-6 sm:p-10 shadow-sm hover:border-[#1B4332] transition duration-200 space-y-6"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                {/* Header Strip */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5DFD7]">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-700 shadow-sm">
-                      <Icon className="w-7 h-7" />
+                    <div className="w-12 h-12 rounded bg-[#112A1F] border border-[#2D5A43] flex items-center justify-center text-amber-100 shadow-sm shrink-0">
+                      <Icon className="w-6 h-6 text-[#D9733E]" />
                     </div>
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                        {p.category}
-                      </span>
-                      <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#112A1F] text-amber-200">
+                          {p.code}
+                        </span>
+                        <span className="text-xs font-semibold uppercase tracking-wider text-[#A6481A]">
+                          {p.tag}
+                        </span>
+                      </div>
+                      <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#112A1F] mt-1">
                         {p.title}
                       </h2>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  <div className="flex items-center">
+                    <span className="text-xs font-sans font-semibold px-3 py-1.5 rounded bg-[#E1EDE6] text-[#1B4332] border border-[#C2DBCF]">
                       ★ {p.metric}
                     </span>
                   </div>
                 </div>
 
-                <div className="text-slate-600 leading-relaxed text-base">
-                  {p.description}
+                {/* Subtitle & Mandate */}
+                <div className="space-y-3">
+                  <p className="font-serif text-sm italic text-[#6E675F]">
+                    {p.subtitle}
+                  </p>
+                  <p className="text-sm text-[#44403C] leading-relaxed">
+                    {p.description}
+                  </p>
                 </div>
 
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800 mb-3">
-                    Key Features & Operations:
+                {/* Operational Details */}
+                <div className="space-y-3 pt-2 border-t border-[#E5DFD7]">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#6E675F] font-sans">
+                    Core Operational Protocols:
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {p.bullets.map((bullet, bIdx) => (
                       <div
                         key={bIdx}
-                        className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100"
+                        className="flex items-start gap-2.5 text-xs text-[#292524] bg-[#F4EFEA] p-3 rounded border border-[#D8CFC4]"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                        <span>{bullet}</span>
+                        <CheckCircle2 className="w-4 h-4 text-[#1B4332] shrink-0 mt-0.5" />
+                        <span className="leading-relaxed">{bullet}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-slate-100">
-                  <div className="text-xs text-slate-500 italic">
-                    {p.tagline}
+                {/* Bottom Action CTA */}
+                <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-[#E5DFD7]">
+                  <div className="text-xs text-[#6E675F] font-serif italic">
+                    100% Free Public Access • Fully Funded via Philanthropic Sponsorship
                   </div>
                   <Link
                     href={`${basePath}/contact?type=admission`}
-                    className="text-xs font-bold px-4 py-2 rounded-lg bg-blue-700 hover:bg-blue-800 text-white transition flex items-center gap-1.5"
+                    className="text-xs font-medium px-4 py-2 rounded bg-[#C45C26] hover:bg-[#A6481A] text-white shadow-sm transition flex items-center gap-1.5"
                   >
-                    <span>Enroll or Inquire About This Program</span>
+                    <span>Inquire or Register for this Program</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
             )
           })}
+        </div>
+      </section>
+
+      {/* 3. Institutional Partnership Banner */}
+      <section className="py-16 bg-[#112A1F] text-[#FBF9F5] border-t border-[#2D5A43]">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+            Sponsor an Initiative or Adopt a Government Classroom
+          </h2>
+          <p className="text-stone-300 text-sm max-w-2xl mx-auto leading-relaxed">
+            Corporate foundations, alumni trusts, and philanthropic sponsors can directly fund a village tutoring circle or underwrite sanitation repairs at a government primary school.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href={`${basePath}/contact?type=sponsor`}
+              className="px-6 py-3 rounded bg-[#C45C26] hover:bg-[#A6481A] text-white text-xs font-semibold tracking-wide transition"
+            >
+              Request Partnership Dossier
+            </Link>
+            <Link
+              href={`${basePath}/contact?type=volunteer`}
+              className="px-6 py-3 rounded border border-[#2D5A43] hover:bg-[#1B4332] text-amber-100 font-serif text-xs transition"
+            >
+              Apply as Volunteer Educator
+            </Link>
+          </div>
         </div>
       </section>
     </div>

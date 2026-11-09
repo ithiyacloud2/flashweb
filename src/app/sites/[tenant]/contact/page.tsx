@@ -1,6 +1,6 @@
 import React from 'react'
 import { InquiryForm } from '@/components/InquiryForm'
-import { MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, ShieldCheck, Building, Landmark } from 'lucide-react'
 
 export async function generateMetadata({
   params,
@@ -9,9 +9,9 @@ export async function generateMetadata({
 }) {
   const resolved = await params
   return {
-    title: `Contact & Admissions | ${resolved.tenant === 'prayaan' ? 'Prayaan Foundation' : resolved.tenant}`,
+    title: `Institutional Secretariat & Intake | ${resolved.tenant === 'prayaan' ? 'Prayaan Foundation' : resolved.tenant}`,
     description:
-      'Contact Prayaan Foundation in Kishanganj, Bihar. Enroll a student, apply as a volunteer teacher, or sponsor a government school project.',
+      'Contact Prayaan Foundation in Kishanganj, Bihar. Register out-of-school children, apply for teaching fellowships, or sponsor rural school infrastructure.',
   }
 }
 
@@ -25,109 +25,148 @@ export default async function TenantContactPage({
   const defaultType = resolvedParams?.type || 'admission'
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Header */}
-      <section className="bg-gradient-to-b from-slate-900 to-blue-950 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-            CONNECT WITH PRAYAAN
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight mt-4 text-white">
-            We Are Here to Listen & Partner
+    <div className="bg-[#FBF9F5] text-[#292524] selection:bg-[#F6D7C7] selection:text-[#6E2E0E] min-h-screen">
+      {/* 1. Dignified Institutional Header */}
+      <section className="relative bg-[#112A1F] text-[#FBF9F5] py-20 border-b border-[#2D5A43] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center mix-blend-luminosity opacity-15 filter contrast-125 pointer-events-none"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2000&auto=format&fit=crop')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1B14] via-[#112A1F]/95 to-[#112A1F]/80 pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded bg-[#1B4332] border border-[#2D5A43] text-stone-300 text-xs font-serif tracking-widest uppercase">
+            <span>Official Institutional Secretariat</span>
+            <span className="text-white/40">•</span>
+            <span className="text-amber-200/90 font-sans not-italic font-medium">Public & Sponsor Relations</span>
+          </div>
+
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+            Institutional Secretariat & Field Intake
           </h1>
-          <p className="text-slate-300 text-lg mt-4 leading-relaxed font-normal">
-            Reach out to our central desk in Kishanganj, Bihar. Whether you want to enroll a child,
-            volunteer your teaching expertise, or sponsor a rural school drive.
+
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed font-sans max-w-2xl mx-auto">
+            Direct your inquiries regarding student intake, teaching fellowships, CSR alignments, or district
+            partnerships to our administrative desk in Kishanganj.
           </p>
         </div>
       </section>
 
-      {/* Main Grid */}
-      <section className="py-20">
+      {/* 2. Main Content Grid */}
+      <section className="py-20 bg-[#F4EFEA] border-b border-[#D8CFC4]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left Contact Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Left Contact & Registry Details */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="rounded-2xl bg-white border border-slate-200 p-8 shadow-sm space-y-6">
-                <h3 className="text-xl font-bold text-slate-900 border-b border-slate-100 pb-4">
-                  Headquarters & Information
-                </h3>
+              {/* Primary Office Card */}
+              <div className="rounded-lg bg-[#FBF9F5] border border-[#D8CFC4] p-8 shadow-sm space-y-6">
+                <div className="border-b border-[#E5DFD7] pb-4">
+                  <div className="text-[11px] font-sans font-semibold text-[#A6481A] uppercase tracking-wider">
+                    Administrative Secretariat
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-[#112A1F]">
+                    Kishanganj Central Secretariat
+                  </h3>
+                </div>
 
-                <div className="space-y-5 text-sm text-slate-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 mt-0.5">
-                      <MapPin className="w-5 h-5" />
+                <div className="space-y-5 text-xs sm:text-sm text-[#44403C] font-sans">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-9 h-9 rounded bg-[#1B4332] text-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <MapPin className="w-4 h-4 text-[#D9733E]" />
                     </div>
                     <div>
-                      <div className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                        Office Location
+                      <div className="font-bold text-[#112A1F] text-xs uppercase tracking-wider">
+                        Registered Headquarters & Postal Address
                       </div>
-                      <p className="mt-0.5 text-slate-700">
+                      <p className="mt-1 text-[#292524] leading-relaxed">
                         Prayaan Foundation Central Office<br />
-                        Kishanganj, Bihar, India
+                        Kishanganj, District Kishanganj<br />
+                        Bihar – 855107, India
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
-                      <Phone className="w-5 h-5" />
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-9 h-9 rounded bg-[#1B4332] text-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <Phone className="w-4 h-4 text-[#D9733E]" />
                     </div>
                     <div>
-                      <div className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                        Helpline & WhatsApp
+                      <div className="font-bold text-[#112A1F] text-xs uppercase tracking-wider">
+                        Field Helpline & Operations Desk
                       </div>
-                      <p className="mt-0.5 text-slate-700 font-semibold">
+                      <p className="mt-1 text-[#112A1F] font-semibold">
                         (+91) 620 135 2256
                       </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                        Official Email
-                      </div>
-                      <p className="mt-0.5 text-slate-700 font-semibold">
-                        info@prayaan.org
+                      <p className="text-[11px] text-[#6E675F] italic mt-0.5">
+                        Direct line for teachers, village heads, and student families
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center shrink-0 mt-0.5">
-                      <Clock className="w-5 h-5" />
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-9 h-9 rounded bg-[#1B4332] text-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <Mail className="w-4 h-4 text-[#D9733E]" />
                     </div>
                     <div>
-                      <div className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                        Operating Hours
+                      <div className="font-bold text-[#112A1F] text-xs uppercase tracking-wider">
+                        Official Secretariat Inquiries
                       </div>
-                      <p className="mt-0.5 text-slate-700">
-                        Monday – Saturday: 8:00 AM – 6:00 PM<br />
-                        Sunday: Closed (Field drives only)
+                      <p className="mt-1 text-[#112A1F] font-semibold">
+                        contact@prayaan.org
+                      </p>
+                      <p className="text-[11px] text-[#6E675F] italic mt-0.5">
+                        For institutional partnerships, CSR grants, and audits: info@prayaan.org
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-9 h-9 rounded bg-[#1B4332] text-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <Clock className="w-4 h-4 text-[#D9733E]" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-[#112A1F] text-xs uppercase tracking-wider">
+                        Secretariat Hours & Public Reception
+                      </div>
+                      <p className="mt-1 text-[#292524] leading-relaxed">
+                        Monday – Saturday: 08:00 AM – 06:00 PM IST<br />
+                        Sunday: Closed for routine visitors (reserved for village field rallies)
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Legal Notice */}
-              <div className="p-6 rounded-2xl bg-slate-900 text-slate-300 space-y-3">
-                <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
-                  <ShieldCheck className="w-5 h-5" />
-                  National Non-Governmental Organization
+              {/* Legal Entity & Compliance Ledger */}
+              <div className="p-6 rounded-lg bg-[#112A1F] text-[#FBF9F5] border border-[#2D5A43] space-y-3 font-sans">
+                <div className="flex items-center gap-2 text-amber-200 font-serif font-bold text-sm">
+                  <ShieldCheck className="w-4 h-4 text-[#D9733E]" />
+                  <span>Statutory Legal Identification</span>
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  PRAYAAN Foundation is duly registered under the Societies Registration Act (Nov 2017).
-                  All donations and corporate sponsorships are tax-exempt and rigorously audited.
-                </p>
+                <div className="space-y-2 text-xs text-stone-300 leading-relaxed">
+                  <div className="flex justify-between items-center py-1 border-b border-[#2D5A43]">
+                    <span className="text-stone-400">Constitution:</span>
+                    <span className="font-semibold text-white">Societies Registration Act XXI of 1860</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-[#2D5A43]">
+                    <span className="text-stone-400">Date of Registration:</span>
+                    <span className="font-semibold text-white">November 2017</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-[#2D5A43]">
+                    <span className="text-stone-400">Tax Status:</span>
+                    <span className="font-semibold text-amber-200">12A & 80G Certified Non-Profit</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1">
+                    <span className="text-stone-400">Jurisdiction:</span>
+                    <span className="font-semibold text-white">Govt. of Bihar & Union of India</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right: Form */}
+            {/* Right: Intake Form */}
             <div className="lg:col-span-7">
               <InquiryForm defaultType={defaultType} />
             </div>

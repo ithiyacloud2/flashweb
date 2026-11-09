@@ -47,12 +47,6 @@ export const Navbar = ({ basePath = '' }: { basePath?: string }) => {
 
           <div className="flex items-center gap-4">
             <Link
-              href="/"
-              className="text-stone-300 hover:text-white transition text-[11px] hidden lg:inline-block"
-            >
-              FlashWeb Platform Engine
-            </Link>
-            <Link
               href="/admin"
               className="inline-flex items-center gap-1.5 text-amber-200/90 hover:text-white px-2.5 py-0.5 rounded border border-[#2D5A43] bg-[#1B4332]/80 hover:bg-[#1B4332] transition font-medium"
               title="Foundation Staff & Secretariat Login"
