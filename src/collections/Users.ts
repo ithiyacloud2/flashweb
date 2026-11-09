@@ -3,8 +3,10 @@ import type { CollectionConfig } from 'payload'
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
+    group: 'Multi-Tenant Engine',
     useAsTitle: 'email',
     defaultColumns: ['name', 'email', 'role'],
+    description: 'Manage Super Admins and client staff editors assigned to specific tenants.',
   },
   auth: true,
   access: {

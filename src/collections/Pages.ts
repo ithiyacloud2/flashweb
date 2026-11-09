@@ -3,8 +3,9 @@ import type { CollectionConfig } from 'payload'
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
+    group: 'Client Content (Prayaan)',
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'slug', 'tenant', 'updatedAt'],
   },
   access: {
     read: () => true,

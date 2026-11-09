@@ -22,6 +22,9 @@ const isPostgres = (process.env.DATABASE_URI || '').startsWith('postgres')
 export default buildConfig({
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: '• FlashWeb Multi-Tenant CMS',
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },

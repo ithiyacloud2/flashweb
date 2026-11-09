@@ -3,8 +3,10 @@ import type { CollectionConfig } from 'payload'
 export const Tenants: CollectionConfig = {
   slug: 'tenants',
   admin: {
+    group: 'Multi-Tenant Engine',
     useAsTitle: 'name',
     defaultColumns: ['name', 'slug', 'domain', 'isDefault'],
+    description: 'Manage client websites, custom domains, branding palettes, and tenant isolation.',
   },
   access: {
     read: () => true,

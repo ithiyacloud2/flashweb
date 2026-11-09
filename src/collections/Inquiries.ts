@@ -3,8 +3,9 @@ import type { CollectionConfig } from 'payload'
 export const Inquiries: CollectionConfig = {
   slug: 'inquiries',
   admin: {
+    group: 'Inquiries & Admissions',
     useAsTitle: 'name',
-    defaultColumns: ['name', 'email', 'type', 'status', 'createdAt'],
+    defaultColumns: ['name', 'email', 'type', 'status', 'tenant', 'createdAt'],
   },
   access: {
     create: () => true,
