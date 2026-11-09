@@ -17,13 +17,17 @@ import { Pages } from './collections/Pages'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const dbUri =
+const rawUri =
   process.env.DATABASE_URI ||
   process.env.DATABASE_URL ||
   process.env.POSTGRES_URL ||
   ''
 
-const isPostgres = dbUri.startsWith('postgres')
+let cleanUri = rawUri.trim()
+cleanUri = cleanUri.replace(/^(DATABASE_URI|DATABASE_URL|POSTGRES_URL)=/, '').trim()
+cleanUri = cleanUri.replace(/^["']|["']$/g, '')
+
+const isPostgres = cleanUri.startsWith('postgres')
 
 export default buildConfig({
   admin: {
@@ -45,12 +49,15 @@ export default buildConfig({
   db: isPostgres
     ? postgresAdapter({
         pool: {
-          connectionString: dbUri,
+          connectionString: cleanUri,
+          ssl: cleanUri.includes('neon.tech') || cleanUri.includes('sslmode=require')
+            ? { rejectUnauthorized: false }
+            : undefined,
         },
       })
     : sqliteAdapter({
         client: {
-          url: dbUri || 'file:./local.db',
+          url: cleanUri || 'file:./local.db',
         },
       }),
   sharp,
