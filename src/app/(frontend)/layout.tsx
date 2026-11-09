@@ -1,35 +1,26 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import './globals.css'
-import { Navbar } from '@/components/Navbar'
-import { Footer } from '@/components/Footer'
+import { FlashWebNavbar } from '@/components/FlashWebNavbar'
+import { FlashWebFooter } from '@/components/FlashWebFooter'
 
 export const metadata: Metadata = {
-  title: 'Prayaan Foundation | Modern Educational & Community Platform',
+  title: 'FlashWeb | Next-Gen Multi-Tenant Website & CMS Engine',
   description:
-    'National educational NGO founded in November 2017, registered under the Societies Registration Act. Empowering underprivileged youth, eliminating dropouts, and upgrading schools across North India.',
-  keywords: [
-    'Prayaan Foundation',
-    'Education NGO India',
-    'Dropout Clinic',
-    'Vidya Prabha',
-    'Kishanganj Bihar NGO',
-    'School Chale Hum',
-    'Government School Development',
-  ],
+    'Deploy and manage high-converting, accessible websites for educational institutions, businesses, and clinics on a 100% free serverless stack.',
 }
 
-export default function RootLayout({
+export default function PlatformLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col justify-between antialiased selection:bg-amber-200 selection:text-slate-900">
-        <Navbar />
+      <body className="min-h-screen flex flex-col justify-between antialiased bg-slate-950 text-slate-100 selection:bg-amber-400 selection:text-slate-950">
+        <FlashWebNavbar />
         <main className="flex-grow">{children}</main>
-        <Footer />
+        <FlashWebFooter />
       </body>
     </html>
   )

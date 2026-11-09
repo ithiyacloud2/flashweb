@@ -1,16 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-lora: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-cinzel: 'Cinzel', 'Lora', Georgia, serif;
 }
 
 body {
   font-family: var(--font-sans);
-  color: #1e293b;
-  background-color: #f8fafc;
+  color: #292524;
+  background-color: #FBF9F5;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle editorial paper grain */
+.bg-parchment-texture {
+  background-color: #FBF9F5;
+  background-image: radial-gradient(#E8E1D7 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+/* Academic Double Rule Borders */
+.border-double-academic {
+  border-bottom: 3px double #C2DBCF;
+}
+
+.border-double-terracotta {
+  border-bottom: 3px double #C45C26;
 }
 
 /* Smooth Scrolling */
@@ -18,15 +40,8 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom Gradients */
-.bg-gradient-brand {
-  background: linear-gradient(135deg, #0f2942 0%, #1e3a8a 100%);
-}
-
-.bg-gradient-warm {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-}
-
-.bg-gradient-subtle {
-  background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+/* Custom Selection */
+::selection {
+  background-color: #F6D7C7;
+  color: #6E2E0E;
 }

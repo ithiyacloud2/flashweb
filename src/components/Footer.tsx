@@ -1,148 +1,175 @@
 import React from 'react'
 import Link from 'next/link'
 import {
-  GraduationCap,
+  BookOpen,
   MapPin,
   Phone,
   Mail,
-  Heart,
-  Globe,
+  Shield,
+  FileCheck,
+  Building,
   ArrowRight,
-  ShieldCheck,
 } from 'lucide-react'
 
-export const Footer = () => {
+export const Footer = ({ basePath = '' }: { basePath?: string }) => {
+  const prefix = basePath ? basePath : ''
+
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-900">
+    <footer className="bg-[#112A1F] text-[#E1EDE6] pt-16 pb-12 border-t-2 border-[#1B4332]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-900">
-          {/* Col 1: Foundation Info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#1B4332]">
+          {/* Col 1: Foundation Legal Entity */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-amber-500 flex items-center justify-center text-white shadow-md">
-                <GraduationCap className="w-6 h-6 text-amber-300" />
+            <Link href={prefix || '/'} className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded bg-[#1B4332] border border-[#2D5A43] flex items-center justify-center text-amber-100 shadow-sm">
+                <BookOpen className="w-5 h-5 text-[#D9733E]" />
               </div>
-              <span className="text-2xl font-black tracking-tight text-white">
-                PRAYAAN <span className="text-amber-400 font-semibold">Foundation</span>
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white">
+                PRAYAAN FOUNDATION
               </span>
             </Link>
 
-            <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              Founded in November 2017 and registered under the Societies Registration Act.
-              Dedicated to the educational, social, and economic empowerment of marginalized
-              communities, reinstating school dropouts, and elevating government schools across North India.
+            <p className="text-stone-300 text-xs sm:text-sm leading-relaxed max-w-md font-sans">
+              Founded in November 2017 and registered under the Societies Registration Act XXI of 1860.
+              Dedicated to rural literacy, rehabilitating school dropouts, improving state school infrastructure,
+              and advancing socio-economic self-reliance across Kishanganj, Bihar, and rural North India.
             </p>
 
-            <div className="pt-2 flex items-center gap-2 text-xs text-emerald-400 bg-emerald-950/50 border border-emerald-900/50 px-3 py-2 rounded-lg w-fit">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Registered Society • 100% Non-Profit Organization</span>
+            <div className="pt-2 flex flex-col gap-1.5 text-xs text-stone-300 font-serif italic">
+              <div className="flex items-center gap-2 text-amber-200/90">
+                <Shield className="w-3.5 h-3.5 text-[#D9733E] shrink-0" />
+                <span>Non-Profit Legal Society (Govt. of Bihar Registration)</span>
+              </div>
+              <div className="flex items-center gap-2 text-stone-400 font-sans not-italic text-[11px]">
+                <FileCheck className="w-3.5 h-3.5 text-stone-500 shrink-0" />
+                <span>Audited Annual Statements • Sections 12A & 80G Compliant</span>
+              </div>
             </div>
           </div>
 
-          {/* Col 2: Core Programs */}
+          {/* Col 2: Institutional Programs Index */}
           <div>
-            <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">
-              Key Initiatives
+            <h4 className="font-serif text-white font-bold text-xs uppercase tracking-widest mb-4 text-amber-200/90">
+              Program Syllabus
             </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400">
+            <ul className="space-y-2 text-xs text-stone-300 font-sans">
               <li>
-                <Link href="/programs#vidya-prabha" className="hover:text-amber-400 transition flex items-center gap-1.5">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-600" /> Vidya Prabha
+                <Link href={`${prefix}/programs#dropout-clinic`} className="hover:text-amber-200 transition">
+                  PRY-01 • Dropout Clinic
                 </Link>
               </li>
               <li>
-                <Link href="/programs#dropout-clinic" className="hover:text-amber-400 transition flex items-center gap-1.5">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-600" /> Dropout Clinic
+                <Link href={`${prefix}/programs#vidya-prabha`} className="hover:text-amber-200 transition">
+                  PRY-02 • Vidya Prabha
                 </Link>
               </li>
               <li>
-                <Link href="/programs#school-chale-hum" className="hover:text-amber-400 transition flex items-center gap-1.5">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-600" /> School Chale Hum
+                <Link href={`${prefix}/programs#school-chale-hum`} className="hover:text-amber-200 transition">
+                  PRY-03 • School Chale Hum
                 </Link>
               </li>
               <li>
-                <Link href="/programs#centre-for-competition" className="hover:text-amber-400 transition flex items-center gap-1.5">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-600" /> Centre for Competition
+                <Link href={`${prefix}/programs#centre-for-competition`} className="hover:text-amber-200 transition">
+                  PRY-04 • Centre for Competition
                 </Link>
               </li>
               <li>
-                <Link href="/programs#model-school" className="hover:text-amber-400 transition flex items-center gap-1.5">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-600" /> Model School (K-12)
+                <Link href={`${prefix}/programs#model-school`} className="hover:text-amber-200 transition">
+                  PRY-05 • Model School (K-12)
                 </Link>
               </li>
               <li>
-                <Link href="/programs#institutional-excellence" className="hover:text-amber-400 transition flex items-center gap-1.5">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-600" /> Govt School Support
+                <Link href={`${prefix}/programs#institutional-excellence`} className="hover:text-amber-200 transition">
+                  PRY-06 • Govt School Support
+                </Link>
+              </li>
+              <li>
+                <Link href={`${prefix}/programs#community-centre`} className="hover:text-amber-200 transition">
+                  PRY-07 • Community Livelihood
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Navigation */}
+          {/* Col 3: Governance & Field Dispatches */}
           <div>
-            <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">
-              Quick Links
+            <h4 className="font-serif text-white font-bold text-xs uppercase tracking-widest mb-4 text-amber-200/90">
+              Institutional Navigation
             </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400">
+            <ul className="space-y-2 text-xs text-stone-300 font-sans">
               <li>
-                <Link href="/" className="hover:text-amber-400 transition">Home</Link>
+                <Link href={prefix || '/'} className="hover:text-amber-200 transition">
+                  Foundation Home
+                </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-amber-400 transition">About Our Mission</Link>
+                <Link href={`${prefix}/about`} className="hover:text-amber-200 transition">
+                  Foundation Charter & History
+                </Link>
               </li>
               <li>
-                <Link href="/programs" className="hover:text-amber-400 transition">Academic Programs</Link>
+                <Link href={`${prefix}/programs`} className="hover:text-amber-200 transition">
+                  Complete Program Prospectus
+                </Link>
               </li>
               <li>
-                <Link href="/news" className="hover:text-amber-400 transition">News & Field Drives</Link>
+                <Link href={`${prefix}/news`} className="hover:text-amber-200 transition">
+                  Field Dispatches & Reports
+                </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-amber-400 transition">Enroll a Child</Link>
+                <Link href={`${prefix}/contact?type=sponsor`} className="hover:text-amber-200 transition">
+                  CSR Sponsorship & Adoption
+                </Link>
               </li>
               <li>
-                <Link href="/contact?type=volunteer" className="hover:text-amber-400 transition">Volunteer / Partner</Link>
+                <Link href={`${prefix}/contact?type=volunteer`} className="hover:text-amber-200 transition">
+                  Teaching Fellowships
+                </Link>
               </li>
-              <li>
-                <Link href="/admin" className="text-amber-400 font-semibold hover:underline">Staff Portal (/admin)</Link>
+              <li className="pt-2">
+                <Link href="/admin" className="text-amber-300 hover:underline font-mono text-[11px]">
+                  Secretariat Staff Portal (/admin)
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Contact Details */}
+          {/* Col 4: Secretariat & Contact */}
           <div>
-            <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">
+            <h4 className="font-serif text-white font-bold text-xs uppercase tracking-widest mb-4 text-amber-200/90">
               Headquarters
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400">
+            <ul className="space-y-3 text-xs text-stone-300 font-sans">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <span>Kishanganj, Bihar, India</span>
+                <MapPin className="w-4 h-4 text-[#D9733E] shrink-0 mt-0.5" />
+                <span>
+                  Central Secretariat & Field Office<br />
+                  Kishanganj Town, Bihar 855107, India
+                </span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-amber-400 shrink-0" />
+                <Phone className="w-4 h-4 text-[#D9733E] shrink-0" />
                 <span>(+91) 620 135 2256</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>info@prayaan.org</span>
+                <Mail className="w-4 h-4 text-[#D9733E] shrink-0" />
+                <span>contact@prayaan.org</span>
               </li>
-              <li className="pt-2 text-xs text-slate-500">
-                Operating Hours:<br />Mon – Sat: 8:00 AM – 6:00 PM
+              <li className="pt-1 text-[11px] text-stone-400 font-serif italic border-t border-[#1B4332]">
+                Secretariat Hours: Mon – Sat, 8:00 AM – 6:00 PM IST
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar & SaaS Note */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} Prayaan Foundation. All Rights Reserved.</p>
-          <div className="flex items-center gap-4 flex-wrap">
-            <span className="flex items-center gap-1.5 text-slate-400">
-              <Globe className="w-3.5 h-3.5 text-blue-400" />
-              Powered by Payload CMS & Next.js
-            </span>
-            <span className="text-slate-700">•</span>
-            <span>Deployed on Vercel Serverless</span>
+        {/* Bottom Disclosures */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-stone-400 font-sans">
+          <p>© {new Date().getFullYear()} Prayaan Foundation. Duly registered under Societies Registration Act XXI of 1860.</p>
+          <div className="flex items-center gap-3">
+            <span>Seemanchal Outreach Secretariat</span>
+            <span>•</span>
+            <span>Kishanganj, Bihar</span>
           </div>
         </div>
       </div>
