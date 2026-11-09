@@ -1,7 +1,7 @@
 {
-  "name": "prayaan",
+  "name": "flashweb",
   "version": "1.0.0",
-  "description": "Modern Educational Institute & Multi-Tenant CMS Platform for Prayaan Foundation",
+  "description": "FlashWeb - Next-Gen Multi-Tenant Website & CMS Engine for Institutions and Businesses (Client #1: Prayaan Foundation)",
   "license": "MIT",
   "type": "module",
   "scripts": {
