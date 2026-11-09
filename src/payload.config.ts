@@ -18,12 +18,12 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const rawUri =
-  process.env.DATABASE_URI ||
   process.env.DATABASE_URL_UNPOOLED ||
+  process.env.POSTGRES_URL_NON_POOLING ||
+  process.env.DATABASE_URI ||
   process.env.DATABASE_URL ||
   process.env.POSTGRES_URL ||
   process.env.POSTGRES_PRISMA_URL ||
-  process.env.POSTGRES_URL_NON_POOLING ||
   (process.env.PGHOST && process.env.PGUSER && process.env.PGPASSWORD
     ? `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST_UNPOOLED || process.env.PGHOST}/${process.env.PGDATABASE || 'neondb'}?sslmode=require`
     : '')
@@ -31,6 +31,14 @@ const rawUri =
 let cleanUri = rawUri.trim()
 cleanUri = cleanUri.replace(/^(DATABASE_URI|DATABASE_URL_UNPOOLED|DATABASE_URL|POSTGRES_URL|POSTGRES_PRISMA_URL)=/, '').trim()
 cleanUri = cleanUri.replace(/^["']|["']$/g, '')
+
+// For Neon PostgreSQL: Payload DDL & transactions require direct (unpooled) connection
+if (cleanUri.includes('-pooler.')) {
+  cleanUri = cleanUri.replace('-pooler.', '.')
+}
+// Strip channel_binding which can break serverless node-postgres
+cleanUri = cleanUri.replace(/([?&])channel_binding=[^&]*(&|$)/, '$1')
+cleanUri = cleanUri.replace(/[?&]$/, '')
 
 const isPostgres = cleanUri.startsWith('postgres')
 
