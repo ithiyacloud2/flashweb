@@ -1,107 +1,102 @@
-# FlashWeb: Multi-Tenant Website & CMS Engine
+# FlashWeb: Multi-Tenant Web & CMS Engine
 
-**FlashWeb** is an ultra-fast, multi-tenant website platform and headless CMS engine built with **Next.js 15 (App Router)**, **Payload CMS 3.x**, and **Tailwind CSS**. It is designed for agencies, SaaS builders, and multi-organization setups to launch and manage modern, high-converting websites for educational institutions, businesses, clinics, and NGOs from a single codebase and database.
-
-**Flagship Client Site #1**: [Prayaan Foundation](https://prayaan.org) (Educational NGO & Institute in Kishanganj, Bihar).
+**FlashWeb** is an ultra-fast, multi-tenant web platform and headless CMS engine engineered with **Next.js 15 (App Router)**, **Payload CMS 3.x**, and **Tailwind CSS**. It enables developers, agencies, and organizations to deploy and manage high-performance websites and digital properties from a single unified serverless codebase.
 
 ---
 
-## Architecture: Why FlashWeb?
+## Architecture Overview
 
 ```mermaid
 flowchart TD
-    SuperAdmin["FlashWeb Super Admin (You)"] --> FlashEngine["FlashWeb Central CMS Engine"]
+    PublicUser["Public Web Traffic"] --> EdgeCDN["Vercel Edge CDN"]
+    EdgeCDN --> Middleware["Next.js Middleware Routing"]
     
-    subgraph MultiTenant["Client Tenants (Multi-Site)"]
-        T1["Tenant 1: Prayaan Foundation (prayaan.org)<br>• Live Educational Institute & NGO Portal<br>• 7 Initiatives (Vidya Prabha, Dropout Clinic, etc.)"]
-        T2["Tenant 2: Future Client (e.g. Healthcare, College, Agency)<br>• Assembled with FlashWeb's Modular Blocks"]
-        T3["Tenant 3: Future Enterprise Client<br>• Independent Domain & Brand Palette"]
-    end
+    Middleware -->|Root Domain /| FlashLanding["Minimal FlashWeb Platform Page (/)"]
+    Middleware -->|Custom Domain or /sites/prayaan| TenantSite["Prayaan Foundation Educational Portal (/sites/prayaan)"]
+    Middleware -->|Custom Domain /sites/:tenant| FutureTenants["Isolated Client Tenants (/sites/:tenant)"]
     
-    FlashEngine --> T1
-    FlashEngine --> T2
-    FlashEngine --> T3
-
-    subgraph Infrastructure["Zero-Cost Deployment ($0/month)"]
-        Vercel["Vercel Serverless Edge CDN"]
-        DB["PostgreSQL (Neon / Supabase) or SQLite"]
-    end
-
-    FlashEngine --> Infrastructure
+    AdminUser["Admin & Editorial Staff"] --> AdminPanel["Payload CMS Admin Portal (/admin)"]
+    AdminPanel --> Database["PostgreSQL (Neon Free Tier) / SQLite (Local)"]
+    TenantSite --> Database
+    FutureTenants --> Database
 ```
 
----
-
-## Features
-
-### 1. Reusable "Lego Block" System (Build Any Website in Minutes)
-Instead of hardcoding single-purpose templates, FlashWeb uses a library of modular page blocks:
-* **HeroBlock**: Impactful headlines, call-to-actions, and background treatments.
-* **StatsBlock**: Live counters, milestones, and audit proofs.
-* **ContentBlock**: Rich-text narrative sections with Lexical support.
-* **CallToActionBlock**: Lead capture banners and appointment/donation drivers.
-* **Dynamic Collections**: `Tenants`, `Users`, `Programs`, `Posts`, `Media`, and `Inquiries`.
-
-### 2. Client Staff Portal (`/admin`)
-* Each client's team (e.g., Prayaan Foundation staff) gets a dedicated, role-restricted dashboard at `/admin` to update text, post announcements, publish events, and view incoming student applications without touching any code.
-* **Pre-seeded Admin**:
-  * **Email**: `admin@prayaan.org`
-  * **Password**: `PrayaanAdmin2026!`
-
-### 3. Flagship Showcase: Prayaan Foundation
-Client #1 is fully implemented with:
-* Full educational institute portal (Home, About Us, 7 Initiatives, News & Field Drives, Contact & Admissions).
-* Real extracted history (founded Nov 2017, Societies Registration Act), contact info (Kishanganj, Bihar; `info@prayaan.org`), and verified impact metrics (15,000+ children rallied, 1,850+ dropouts reinstated).
-* Interactive application form routing directly into the `inquiries` database.
+* **Root Platform (`/`)**: A sleek, minimal, professional landing page for FlashWeb with zero client disclosures.
+* **Isolated Tenant Sites (`/sites/[tenant]`)**: Each tenant (e.g., `/sites/prayaan` or custom domain `prayaan.org`) operates with its own custom theme, layout, and content collections.
+* **Admin Portal (`/admin`)**: Centralized Payload CMS 3.x dashboard with role-based access control (RBAC).
 
 ---
 
 ## Tech Stack
 
-* **Framework**: Next.js 15 (App Router, Server Components)
-* **CMS**: Payload CMS 3.x (Lexical editor, native Next.js integration)
-* **Styling**: Tailwind CSS + Lucide React Icons
+* **Framework**: Next.js 15 (App Router, React 19 Server Components)
+* **Headless CMS**: Payload CMS 3.93 (Native Next.js Lexical rich-text editor)
+* **Styling**: Tailwind CSS & Lucide Icons
 * **Database**:
-  * **Local Development**: SQLite (zero setup, `./local.db`)
-  * **Production (Vercel)**: Serverless PostgreSQL (Neon, Supabase, or Vercel Postgres)
-* **Hosting**: Vercel (100% Free Hobby Tier, global edge caching)
+  * **Production (Vercel)**: Serverless PostgreSQL ([Neon.tech](https://neon.tech) free tier, Supabase, or Vercel Postgres)
+  * **Local Development**: SQLite (zero-config, `file:./local.db`)
+* **Infrastructure**: 100% Free Tier ($0/month) on Vercel + Neon
 
 ---
 
-## Quick Start (Local Development)
+## How to Test and Deploy on Vercel ($0 Free Tier)
 
-### 1. Clone & Install
+Vercel functions run in serverless edge environments with ephemeral filesystems. Therefore, running `/admin` and saving content on Vercel requires a serverless PostgreSQL database (such as Neon, which is free forever).
+
+### Step 1: Create a Free PostgreSQL Database on Neon (2 minutes)
+1. Go to **[neon.tech](https://neon.tech)** and sign up for free (using GitHub or Google).
+2. Click **Create Project** (Name: `flashweb-db`, Region: choose closest to you).
+3. Copy your connection string from the Neon dashboard. It looks like:
+   ```text
+   postgresql://username:password@ep-sample-12345.us-east-2.aws.neon.tech/neondb?sslmode=require
+   ```
+
+### Step 2: Import & Deploy on Vercel
+1. Go to **[vercel.com/new](https://vercel.com/new)**.
+2. Select your repository: **`ithiyacloud2/flashweb`**.
+3. Under **Environment Variables**, add the following 3 variables:
+   * **`DATABASE_URI`**: `postgresql://username:password@ep-sample-12345.us-east-2.aws.neon.tech/neondb?sslmode=require`
+   * **`PAYLOAD_SECRET`**: `a583921bfd419b4e138a0b32e6a98762` *(or any random 32+ character string)*
+   * **`NEXT_PUBLIC_SERVER_URL`**: `https://<your-project-name>.vercel.app`
+4. Click **Deploy**. Vercel will build and launch your site globally in ~60 seconds.
+
+### Step 3: Test the Admin Panel on Vercel
+1. Visit `https://<your-project-name>.vercel.app/admin`.
+2. On your first visit, Payload will automatically initialize the database schema in PostgreSQL.
+3. You can either:
+   - Create your first super-admin user directly in the clean Payload UI, **OR**
+   - Visit `https://<your-project-name>.vercel.app/api/seed?key=a583921bfd419b4e138a0b32e6a98762` to seed Prayaan Foundation data and the default administrator account (`admin@prayaan.org` / `PrayaanAdmin2026!`).
+4. Log into `/admin` to manage:
+   * **Tenants**: Create or edit client tenants.
+   * **Users**: Manage staff credentials and role permissions.
+   * **Programs**: Course offerings, syllabus details, and impact metrics.
+   * **Posts**: Announcements, press releases, and field drive photo essays.
+   * **Inquiries**: Live incoming admission applications and contact requests.
+
+---
+
+## Local Development Quickstart
+
 ```bash
+# 1. Clone repository
 git clone https://github.com/ithiyacloud2/flashweb.git
 cd flashweb
+
+# 2. Install dependencies
 pnpm install
-```
 
-### 2. Run Database Seeding
-```bash
+# 3. Seed local SQLite database
 npx tsx src/seed.ts
-```
 
-### 3. Start Development Server
-```bash
+# 4. Start local development server
 pnpm dev
 ```
-Open:
-* **Frontend Site (Prayaan Client)**: [http://localhost:3000](http://localhost:3000)
-* **Staff CMS Portal**: [http://localhost:3000/admin](http://localhost:3000/admin)
 
----
-
-## Deploying to Vercel ($0 Free Tier)
-
-1. Open **[vercel.com/new](https://vercel.com/new)** and import the **`ithiyacloud2/flashweb`** repository.
-2. In the **Environment Variables** section on Vercel, set:
-   * `PAYLOAD_SECRET`: (Your 32-character secret)
-   * `DATABASE_URI`: (Your free Neon or Supabase connection string)
-   * `NEXT_PUBLIC_SERVER_URL`: `https://your-domain.vercel.app`
-3. Click **Deploy**.
+* **FlashWeb Root**: [http://localhost:3000](http://localhost:3000)
+* **Prayaan Tenant Site**: [http://localhost:3000/sites/prayaan](http://localhost:3000/sites/prayaan)
+* **Payload CMS Admin**: [http://localhost:3000/admin](http://localhost:3000/admin)
 
 ---
 
 ## License
-MIT License • Created with FlashWeb Engine.
+MIT License • Developed with FlashWeb Engine.

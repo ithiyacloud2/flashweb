@@ -128,6 +128,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Manage client websites, custom domains, branding palettes, and tenant isolation.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tenants".
  */
@@ -147,6 +149,8 @@ export interface Tenant {
   createdAt: string;
 }
 /**
+ * Manage Super Admins and client staff editors assigned to specific tenants.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */

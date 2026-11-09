@@ -17,7 +17,13 @@ import { Pages } from './collections/Pages'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const isPostgres = (process.env.DATABASE_URI || '').startsWith('postgres')
+const dbUri =
+  process.env.DATABASE_URI ||
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  ''
+
+const isPostgres = dbUri.startsWith('postgres')
 
 export default buildConfig({
   admin: {
@@ -29,6 +35,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
   collections: [Tenants, Users, Programs, Posts, Media, Inquiries, Pages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'a583921bfd419b4e138a0b32e6a98762',
@@ -38,12 +45,12 @@ export default buildConfig({
   db: isPostgres
     ? postgresAdapter({
         pool: {
-          connectionString: process.env.DATABASE_URI,
+          connectionString: dbUri,
         },
       })
     : sqliteAdapter({
         client: {
-          url: process.env.DATABASE_URI || 'file:./local.db',
+          url: dbUri || 'file:./local.db',
         },
       }),
   sharp,

@@ -207,12 +207,14 @@ export async function seed() {
   }
 
   console.log('Seeding completed successfully!')
-  process.exit(0)
+  return { success: true, message: 'Database seeded successfully' }
 }
 
 if (process.argv[1]?.endsWith('seed.ts') || process.argv[1]?.endsWith('seed.js')) {
-  seed().catch((err) => {
-    console.error('Seed error:', err)
-    process.exit(1)
-  })
+  seed()
+    .then(() => process.exit(0))
+    .catch((err) => {
+      console.error('Seed error:', err)
+      process.exit(1)
+    })
 }
