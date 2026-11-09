@@ -1,8 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import '@/app/(frontend)/globals.css'
-import { Navbar } from '@/components/Navbar'
-import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Prayaan Foundation | Rural Education & Dropout Rehabilitation, Kishanganj, Bihar',
@@ -10,19 +8,11 @@ export const metadata: Metadata = {
     'Registered non-profit society (est. Nov 2017) working on school dropout rehabilitation, free remedial bridge schooling, government school infrastructure audits, and youth competitive examination coaching across rural North India.',
 }
 
-export default async function TenantLayout({
+export default function TenantsRootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode
-  params: Promise<{ tenant: string }>
 }) {
-  const resolved = await params
-  const tenantSlug = resolved.tenant
-
-  // basePath for navigation within tenant
-  const basePath = `/sites/${tenantSlug}`
-
   return (
     <html lang="en">
       <head>
@@ -33,10 +23,8 @@ export default async function TenantLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col justify-between antialiased bg-[#FBF9F5] text-[#292524] selection:bg-amber-200 selection:text-slate-900">
-        <Navbar basePath={basePath} />
-        <main className="flex-grow">{children}</main>
-        <Footer basePath={basePath} />
+      <body className="min-h-screen flex flex-col justify-between antialiased bg-[#FBF9F5] text-[#292524] selection:bg-[#F6D7C7] selection:text-[#6E2E0E]">
+        {children}
       </body>
     </html>
   )
