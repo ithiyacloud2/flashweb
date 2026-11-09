@@ -1,7 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp'
@@ -26,7 +25,7 @@ const rawUri =
   process.env.POSTGRES_PRISMA_URL ||
   (process.env.PGHOST && process.env.PGUSER && process.env.PGPASSWORD
     ? `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST_UNPOOLED || process.env.PGHOST}/${process.env.PGDATABASE || 'neondb'}?sslmode=require`
-    : '')
+    : 'postgresql://neondb_owner:npg_Fp4Gt0EBkqRg@ep-aged-hill-bc9w9061.c-16.us-east-1.aws.neon.tech/neondb?sslmode=require')
 
 let cleanUri = rawUri.trim()
 cleanUri = cleanUri.replace(/^(DATABASE_URI|DATABASE_URL_UNPOOLED|DATABASE_URL|POSTGRES_URL|POSTGRES_PRISMA_URL)=/, '').trim()
@@ -39,8 +38,6 @@ if (cleanUri.includes('-pooler.')) {
 // Strip channel_binding which can break serverless node-postgres
 cleanUri = cleanUri.replace(/([?&])channel_binding=[^&]*(&|$)/, '$1')
 cleanUri = cleanUri.replace(/[?&]$/, '')
-
-const isPostgres = cleanUri.startsWith('postgres')
 
 export default buildConfig({
   admin: {
@@ -59,19 +56,11 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: isPostgres
-    ? postgresAdapter({
-        pool: {
-          connectionString: cleanUri,
-          ssl: cleanUri.includes('neon.tech') || cleanUri.includes('sslmode=require')
-            ? { rejectUnauthorized: false }
-            : undefined,
-        },
-      })
-    : sqliteAdapter({
-        client: {
-          url: cleanUri || 'file:./local.db',
-        },
-      }),
+  db: postgresAdapter({
+    pool: {
+      connectionString: cleanUri,
+      ssl: { rejectUnauthorized: false },
+    },
+  }),
   sharp,
 })

@@ -1,4 +1,9 @@
+import path from 'path'
 import type { CollectionConfig } from 'payload'
+
+const staticDir = process.env.VERCEL
+  ? path.resolve('/tmp', 'media')
+  : path.resolve(process.cwd(), 'public/media')
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -9,7 +14,7 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   upload: {
-    staticDir: 'public/media',
+    staticDir,
     imageSizes: [
       {
         name: 'thumbnail',
